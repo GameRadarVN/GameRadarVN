@@ -1,127 +1,350 @@
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GameRadarVN- Bản Hack Game, Ứng Dụng Java Miễn Phí</title>
+    <title>GameRadarVN - Thế Giới Game & Ứng Dụng Java Di Động</title>
     <style>
-        /* Phong cách tối giản đặc trưng của Wap VIP / GameRadarVN*/
+        /* Định hình phong cách Wap VIP / GameRadarVN hiện đại hóa */
         body {
-            font-family: Arial, sans-serif;
-            background-color: #fff;
-            color: #000;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f9;
+            color: #333;
             margin: 0;
             padding: 0;
             font-size: 14px;
         }
-        .header {
+        
+        /* Container chính giới hạn chiều rộng chuẩn mobile/wap */
+        .wap-container {
+            max-width: 480px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Khối Logo & Header */
+        .logo-header {
+            background: linear-gradient(135deg, #1f2d3d, #111b24);
+            padding: 15px 10px;
+            text-align: center;
+            border-bottom: 3px solid #e67e22;
+        }
+
+        .logo-svg {
+            max-width: 280px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* Thanh thông báo */
+        .notice-bar {
+            background-color: #fff9c4;
+            color: #5d4037;
+            padding: 8px 12px;
+            font-size: 12px;
+            border-bottom: 1px solid #fbc02d;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        /* Thanh tìm kiếm Wap cổ điển */
+        .search-box {
+            background-color: #f1f2f6;
+            padding: 10px;
+            display: flex;
+            gap: 5px;
+            border-bottom: 1px solid #dfe4ea;
+        }
+
+        .search-box input[type="text"] {
+            flex: 1;
+            padding: 6px 10px;
+            border: 1px solid #ced6e0;
+            border-radius: 4px;
+            font-size: 13px;
+            outline: none;
+        }
+
+        .search-box button {
             background-color: #e67e22;
             color: white;
-            padding: 8px;
-            text-align: center;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
             font-weight: bold;
-            font-size: 16px;
-            text-transform: uppercase;
+            cursor: pointer;
         }
-        .notice {
-            background-color: #fff9c4;
-            padding: 6px;
-            border-bottom: 1px solid #fbc02d;
-            font-size: 12px;
-            text-align: center;
+
+        /* Thống kê Wap */
+        .wap-stats {
+            background-color: #2f3542;
+            color: #fff;
+            font-size: 11px;
+            padding: 4px 10px;
+            display: flex;
+            justify-content: space-between;
         }
+
+        .stats-item span {
+            color: #2ed573;
+            font-weight: bold;
+        }
+
+        /* Tiêu đề danh mục */
         .category-title {
-            background-color: #2980b9;
+            background: linear-gradient(90deg, #2980b9, #3498db);
             color: white;
-            padding: 5px 8px;
+            padding: 8px 12px;
             font-weight: bold;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: inset 0 -2px 0 rgba(0,0,0,0.1);
         }
+
+        /* Danh sách bài viết/game */
+        .list-container {
+            display: flex;
+            flex-direction: column;
+        }
+
         .list-item {
-            padding: 8px;
-            border-bottom: 1px solid #eee;
+            padding: 12px;
+            border-bottom: 1px solid #f1f2f6;
             display: flex;
             align-items: center;
+            transition: background-color 0.2s;
         }
+
+        .list-item:hover {
+            background-color: #f8f9fa;
+        }
+
         .list-item:nth-child(even) {
-            background-color: #f9f9f9;
+            background-color: #fafbfc;
         }
+
         .icon {
-            font-size: 18px;
-            margin-right: 8px;
+            font-size: 20px;
+            margin-right: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
         }
-        a {
-            color: #0066cc;
+
+        .item-info {
+            flex: 1;
+        }
+
+        .item-info a {
+            color: #1e3799;
             text-decoration: none;
             font-weight: bold;
+            font-size: 14px;
         }
-        a:hover {
+
+        .item-info a:hover {
+            color: #e67e22;
             text-decoration: underline;
         }
-        .hot {
-            color: red;
-            font-size: 10px;
-            font-weight: bold;
-            vertical-align: super;
-            margin-left: 3px;
-        }
-        .footer {
-            background-color: #34495e;
-            color: #fff;
-            text-align: center;
-            padding: 10px;
+
+        .item-desc {
             font-size: 11px;
-            margin-top: 15px;
+            color: #7f8c8d;
+            margin-top: 3px;
+        }
+
+        /* Nhãn Hot, New */
+        .badge {
+            font-size: 9px;
+            font-weight: bold;
+            padding: 2px 4px;
+            border-radius: 3px;
+            color: white;
+            margin-left: 5px;
+            text-transform: uppercase;
+            vertical-align: middle;
+        }
+
+        .badge-hot {
+            background-color: #ff4757;
+        }
+
+        .badge-new {
+            background-color: #2ed573;
+        }
+
+        /* Phần hướng dẫn cài đặt */
+        .guide-box {
+            margin: 10px;
+            padding: 12px;
+            background-color: #f1f2f6;
+            border-left: 4px solid #e67e22;
+            border-radius: 4px;
+        }
+
+        .guide-box h4 {
+            margin: 0 0 6px 0;
+            color: #2c3e50;
+        }
+
+        .guide-box p {
+            margin: 0;
+            font-size: 12px;
+            color: #57606f;
+            line-height: 1.4;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #1e272e;
+            color: #a4b0be;
+            text-align: center;
+            padding: 15px 10px;
+            font-size: 11px;
+            margin-top: auto;
+            border-top: 2px solid #e67e22;
+        }
+
+        .footer a {
+            color: #e67e22;
+            text-decoration: none;
         }
     </style>
 </head>
 <body>
 
-    <!-- Header Wap -->
-    <div class="header">GameRadarVN - Kho Game Di Động</div>
+    <div class="wap-container">
+        
+        <!-- HEADER LOGO GAMERADARVN (Dạng SVG siêu nét) -->
+        <div class="logo-header">
+            <svg class="logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 65">
+                <defs>
+                    <linearGradient id="radarGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#ff9f43" />
+                        <stop offset="100%" stop-color="#ee5253" />
+                    </linearGradient>
+                </defs>
+                <!-- Biểu tượng Radar phát sóng -->
+                <g transform="translate(10, 8)">
+                    <!-- Vòng tròn ngoài -->
+                    <circle cx="25" cy="25" r="22" fill="none" stroke="url(#radarGrad)" stroke-width="2"/>
+                    <!-- Vòng tròn đứt nét ở giữa -->
+                    <circle cx="25" cy="25" r="15" fill="none" stroke="#fff" stroke-width="1" stroke-opacity="0.5" stroke-dasharray="3,3"/>
+                    <!-- Vòng tròn tâm -->
+                    <circle cx="25" cy="25" r="8" fill="none" stroke="url(#radarGrad)" stroke-width="1.5"/>
+                    <!-- Kim quét radar -->
+                    <line x1="25" y1="25" x2="41" y2="9" stroke="#fff" stroke-width="2" stroke-linecap="round">
+                        <animateTransform attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="4s" repeatCount="indefinite" />
+                    </line>
+                    <!-- Điểm sáng mục tiêu phát hiện -->
+                    <circle cx="38" cy="20" r="2" fill="#2ed573">
+                        <animate attributeName="opacity" values="1;0.2;1" dur="1.5s" repeatCount="indefinite" />
+                    </circle>
+                </g>
+                <!-- Chữ GameRadar -->
+                <text x="72" y="38" font-family="'Segoe UI', Arial, sans-serif" font-weight="900" font-size="28" fill="#ffffff">
+                    Game<tspan fill="#ff9f43">Radar</tspan>
+                </text>
+                <!-- Badge VN -->
+                <rect x="240" y="15" width="42" height="24" rx="5" fill="#ee5253"/>
+                <text x="261" y="32" font-family="'Segoe UI', Arial, sans-serif" font-weight="bold" font-size="13" fill="#ffffff" text-anchor="middle">VN</text>
+            </svg>
+        </div>
 
-    <!-- Thông báo chạy chữ hoặc cố định -->
-    <div class="notice">
-        <b>Thông báo:</b> Cập nhật Game Java, Tool Mod liên tục mỗi ngày!
-    </div>
+        <!-- Khung thống kê nhỏ chuẩn Wap -->
+        <div class="wap-stats">
+            <div class="stats-item">Online: <span>321</span></div>
+            <div class="stats-item">Lượt tải hôm nay: <span>1,249</span></div>
+        </div>
 
-    <!-- Danh mục 1: Tải Game/Ứng dụng Java -->
-    <div class="category-title">ỨNG DỤNG JAVA (.JAR)</div>
-    
-    <div class="list-item">
-        <span class="icon">📁</span>
-        <!-- Thay tên-file.jar bằng tên chính xác file bạn đã upload lên GitHub -->
-        <a href="tên-file.jar" download>Tải Phần Mềm Java Của Bạn</a>
-        <span class="hot">HOT</span>
-    </div>
+        <!-- Thanh thông báo -->
+        <div class="notice-bar">
+            📢 Tải Game Mod, Ứng Dụng Java không kích hoạt SMS miễn phí 100%!
+        </div>
 
-    <div class="list-item">
-        <span class="icon">🎮</span>
-        <a href="#">Army 230 Căn Góc Super <span class="hot">NEW</span></a>
-    </div>
+        <!-- Thanh tìm kiếm -->
+        <div class="search-box">
+            <input type="text" placeholder="Nhập tên game cần tìm..." />
+            <button>Tìm</button>
+        </div>
 
-    <div class="list-item">
-        <span class="icon">⚔️</span>
-        <a href="#">Avatar 250 Auto Câu Cá, Auto Farm</a>
-    </div>
+        <!-- Hướng dẫn nhanh cho game thủ -->
+        <div class="guide-box">
+            <h4>💡 Cách chơi game Java (.JAR):</h4>
+            <p>Để chơi các game .JAR trên Android, bạn hãy tải ứng dụng <b>J2ME Loader</b> từ CH Play về, sau đó chọn file game .jar vừa tải từ wap này để mở nhé!</p>
+        </div>
 
-    <!-- Danh mục 2: Tiện ích / Truyện -->
-    <div class="category-title">TRUYỆN / THỦ THUẬT</div>
-    
-    <div class="list-item">
-        <span class="icon">📖</span>
-        <a href="#">Đọc Truyện Kiếm Hiệp Crack</a>
-    </div>
-    
-    <div class="list-item">
-        <span class="icon">⚙️</span>
-        <a href="#">Thủ thuật mod game Java trên Android (J2ME)</a>
-    </div>
+        <!-- DANH MỤC 1: FILE CỦA BẠN -->
+        <div class="category-title">📥 TẢI NHANH ỨNG DỤNG</div>
+        <div class="list-container">
+            <div class="list-item">
+                <div class="icon">📁</div>
+                <div class="item-info">
+                    <!-- Bạn hãy sửa 'tên-file-của-bạn.jar' bên dưới thành tên file .jar bạn đã up lên nhé -->
+                    <a href="tên-file-của-bạn.jar" download>Tải Ứng Dụng GameRadarVN.JAR</a>
+                    <span class="badge badge-hot">HOT</span>
+                    <div class="item-desc">Phiên bản gốc, sạch, không gắn mã độc kích hoạt.</div>
+                </div>
+            </div>
+        </div>
 
-    <!-- Footer -->
-    <div class="footer">
-        © Bản quyền thuộc về GameRadarVN<br>
-        Wap tải game miễn phí không kích hoạt SMS.
+        <!-- DANH MỤC 2: GAME MOD HOT -->
+        <div class="category-title">🎮 TOP GAME JAVA MOD COLD</div>
+        <div class="list-container">
+            <div class="list-item">
+                <div class="icon">⚔️</div>
+                <div class="item-info">
+                    <a href="#">Avatar 250 Auto Farm, Auto Câu Cá</a>
+                    <span class="badge badge-new">Mới</span>
+                    <div class="item-desc">Mod tự động chăm sóc nông trại cực tiện lợi cho dân cày.</div>
+                </div>
+            </div>
+            <div class="list-item">
+                <div class="icon">💣</div>
+                <div class="item-info">
+                    <a href="#">Army 230 Căn Góc Laze Siêu Chuẩn</a>
+                    <div class="item-desc">Hiển thị đường đạn ngắm bắn tuyệt đối chính xác cho Chicky, Tarzan.</div>
+                </div>
+            </div>
+            <div class="list-item">
+                <div class="icon">🐉</div>
+                <div class="item-info">
+                    <a href="#">Chú Bé Rồng 180 Auto Click</a>
+                    <div class="item-desc">Bản ghép x2 mod phím số tự treo nick không lo mất kết nối.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DANH MỤC 3: TRUYỆN & THỦ THUẬT -->
+        <div class="category-title">📖 TRUYỆN & THỦ THUẬT JAVA</div>
+        <div class="list-container">
+            <div class="list-item">
+                <div class="icon">📘</div>
+                <div class="item-info">
+                    <a href="#">Tổng hợp mã Auto Click phím số các game</a>
+                    <div class="item-desc">Mã treo nick, cày xu hiệu quả nhất.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Wap -->
+        <div class="footer">
+            Bản quyền thuộc về <a href="#">GameRadarVN</a><br>
+            Wap được tối ưu hóa giao diện di động siêu nhẹ.<br>
+            <span style="color: #7f8c8d; font-size: 10px;">Giao diện thiết kế theo phong cách Giaitri321 Classic</span>
+        </div>
+
     </div>
 
 </body>
 </html>
+
+```
